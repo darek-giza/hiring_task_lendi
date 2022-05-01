@@ -21,6 +21,7 @@ project/target
 .run
 .bsp
 .env
+*.g8
 
 # macos specific file
 .DS_Store
