@@ -1,0 +1,26 @@
+logs
+target
+/.bsp
+/.idea
+/.idea_modules
+/.classpath
+/.project
+/.settings
+/RUNNING_PID
+
+project/project
+project/target
+*.class
+*.log
+*.jar
+*.war
+*.nar
+*.ear
+*.tar.gz
+*.rar
+.run
+.bsp
+.env
+
+# macos specific file
+.DS_Store
