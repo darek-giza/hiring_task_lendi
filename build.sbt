@@ -6,10 +6,20 @@ version := "1.0-SNAPSHOT"
 lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
 scalaVersion := "2.13.8"
+val playVersion = "2.9.2"
 
 libraryDependencies += guice
-libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "5.1.0" % Test
-
+libraryDependencies ++= Seq(
+  "org.scalatestplus.play" %% "scalatestplus-play" % "5.1.0" % Test,
+  "com.typesafe.play" %% "play-json" % playVersion,
+  "org.scalatest" %% "scalatest" % "3.2.11" % Test,
+  "org.scalamock" %% "scalamock" % "5.2.0" % Test,
+  "org.typelevel" %% "cats-core" % "2.7.0",
+  "org.typelevel" %% "cats-effect" % "3.3.11",
+  "org.typelevel" %% "cats-effect-testing-scalatest" % "1.4.0" % Test,
+  "org.typelevel" %% "cats-effect-testkit" % "3.3.11" % Test,
+  "org.typelevel" %% "cats-effect-laws" % "3.3.11" % Test
+)
 // Adds additional packages into Twirl
 //TwirlKeys.templateImports += "com.giza.dariusz.controllers._"
 
