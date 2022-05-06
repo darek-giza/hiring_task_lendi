@@ -13,4 +13,16 @@ object Validator {
 
   def isValidOwnPaymentInPercentage(i: BigDecimal): Boolean =
     i > 0 && i < 100
+
+  def isGreaterOrEqualToZero(i: Int): Boolean =
+    i >= 0
+
+  def isUpperGreaterThenLower(upper: Int, lower: Int): Boolean =
+    upper > lower
+
+  def notContainsNegativeValue(s: Set[Int]): Boolean =
+    !s.exists(a => a < 0)
+
+  def notContainsNegative(s: List[BigDecimal]): Boolean =
+    !s.exists(a => a < 0)
 }
