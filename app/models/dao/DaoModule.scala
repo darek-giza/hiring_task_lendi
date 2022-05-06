@@ -1,7 +1,7 @@
 package models.dao
 
 import com.google.inject.AbstractModule
-import repositories.{ MarginRepository, MarginRepositoryImpl }
+import repositories.{ BankMarginRepository, MarginRepositoryImpl }
 import services.{ MarginService, MarginServiceImpl, RangeService, RangeServiceImpl }
 
 class DaoModule extends AbstractModule {
@@ -11,7 +11,7 @@ class DaoModule extends AbstractModule {
       .to(classOf[MarginServiceImpl])
     bind(classOf[RangeService])
       .to(classOf[RangeServiceImpl])
-    bind(classOf[MarginRepository])
+    bind(classOf[BankMarginRepository])
       .to(classOf[MarginRepositoryImpl])
   }
 }
