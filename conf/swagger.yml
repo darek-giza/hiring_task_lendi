@@ -1,0 +1,200 @@
+swagger: "2.0"
+info:
+  title: Sample API
+  description: API description in Markdown.
+  version: 1.0.0
+host: api.example.com
+basePath: /v1
+paths:
+  /margin-get:
+    get:
+      summary: Returns a single bank margin.
+      parameters:
+        - in: path
+          name: currentLoanMonth
+          required: true
+          schema:
+            type: integer
+            example: 12
+        - in: path
+          name: loanAmountPLN
+          required: true
+          schema:
+            type: number
+            example: 25000.00
+        - in : path
+          name: ownPaymentInPercentage
+          required: true
+          schema:
+            type: number
+            example: 25.51
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/MarginDto'
+
+        404:
+          description: 'Validation exception'
+          schema:
+            type: string
+            example: 'Onw payment in percentage could not be parsed'
+  /range-update:
+    put:
+      summary: Put settings values
+      parameters:
+        - in: body
+          name: ConfigFormDto
+          schema:
+            $ref: '#/definitions/ConfigFormDto'
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Config'
+        404:
+          description: 'Validation exception'
+          schema:
+            type: string
+            example: 'Onw payment in percentage could not be parsed'
+  /margin-add:
+    put:
+      summary: Put margins
+      parameters:
+        - in: body
+          name: MarginsFormDto
+          schema:
+            $ref: '#/definitions/MarginsFormDto'
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Margin'
+        404:
+          description: 'Validation exception'
+          schema:
+            type: string
+            example: 'Onw payment in percentage could not be parsed'
+  /range-get:
+    get:
+      summary: Returns list of own payments and list of loan amounts.
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/RangesDto'
+        404:
+          description: 'Validation exception'
+          schema:
+            type: string
+            example: 'Onw payment in percentage could not be parsed'
+
+definitions:
+  MarginDto:
+    properties:
+      margin:
+        type: number
+        example: 3.95
+  RangePayment:
+    properties:
+      min:
+        type: number
+        example: 25.00
+      max:
+        type: number
+        example: 35.00
+  RangeAmount:
+    properties:
+      min:
+        type: number
+        example: 0.00
+      max:
+        type: number
+        example: 40000.00
+  RangesDto:
+    properties:
+      ownPayment:
+        type: array
+        items:
+          $ref: '#/definitions/RangePayment'
+      loanAmount:
+        type: array
+        items:
+          $ref: '#/definitions/RangeAmount'
+  ConfigFormDto:
+    properties:
+      lowestValue:
+        type: number
+        example: 0.00
+      highestValue:
+        type: number
+        example: 20.00
+      splitPoints:
+        type: array
+        items:
+          type: number
+          example: 30.00, 40.00, 50.00
+      rangType:
+        type: string
+        enum:
+          - PAYMENT
+          - AMOUNT
+  Settings:
+    properties:
+      lowestValue:
+        type: number
+        example: 0
+      splitPoints:
+        type: array
+        items:
+          type: number
+          example: 30.00, 40.00, 50.00
+      highestValue:
+        type: number
+        example: 100
+  Config:
+    properties:
+      ownPayment:
+        type: object
+        $ref: '#/definitions/Settings'
+      loanAmount:
+        type: object
+        $ref: '#/definitions/Settings'
+  ItemDto:
+    properties:
+      ownPaymentInPercentage:
+        type: number
+        example: 25.00
+      loanAmountPLN:
+        type: number
+        example: 25000.00
+      margin:
+        type: number
+        example: 3.95
+  MarginsFormDto:
+    properties:
+      margins:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/ItemDto'
+  Margin:
+    properties:
+      ownPaymentRangeInPercent:
+        type: object
+        $ref: '#/definitions/RangePayment'
+      loanAmountRangePLN:
+        type: object
+        $ref: '#/definitions/RangeAmount'
+      value:
+        type: number
+        example: 3.95
+
+
+
+
+
+
+
