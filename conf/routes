@@ -18,3 +18,12 @@ PUT   /range-update                 controllers.AppController.updateRange()
 GET   /range-get                    controllers.AppController.getRanges()
 
 GET   /bank-margin-get              controllers.AppController.getBankMargin()
+
+
+
+
+
+# Swagger API
+GET   /docs/swagger.yml         controllers.Assets.at(path:String="/", file="swagger.yml")
+
+GET   /docs/swagger-ui                controllers.AppController.redirectDocs

@@ -86,6 +86,10 @@ class AppController @Inject()(
     }
   }
 
+  def redirectDocs = Action {
+    Redirect(url = "/assets/lib/swagger-ui/index.html", queryStringParams = Map("url" -> Seq("/docs/swagger.yml")))
+  }
+
   private def exceptionAsResult(ex: AppException): Result =
     Status(ex.statusCode).apply(ex.message)
 }
